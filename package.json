@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@defer/client": "^1.13.1",
     "@hookform/resolvers": "^3.1.1",
     "@huggingface/inference": "^2.6.4",
     "@radix-ui/react-avatar": "^1.0.4",
