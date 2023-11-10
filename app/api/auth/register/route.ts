@@ -14,7 +14,7 @@ export async function POST(request: Request)
 
   const values = [data.name, data.email, hashedPassword];
   try {
-    const result = await executeQuery({ query, values });
+    const result: any = await executeQuery({ query, values });
     const user: User = {
       id: result.insertId,
       name: data.name!,

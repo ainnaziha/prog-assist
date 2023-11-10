@@ -13,7 +13,7 @@ export async function POST(request: Request)
   const values = [data.email];
   
   try {
-    const result = await executeQuery({ query, values });
+    const result: any = await executeQuery({ query, values });
     
     if (result.length === 0) {
       return NextResponse.json({ message: 'Invalid email or password' }, { status: 404 });
