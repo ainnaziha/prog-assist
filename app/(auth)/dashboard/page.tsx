@@ -2,6 +2,10 @@ import AssessmentMenu from "@/components/pages/assessment-menu"
 import { History } from "@/components/pages/history"
 import { UserDetail } from "@/components/user-detail"
 
+export const metadata = {
+  title: "Dashboard",
+}
+
 export default function Dashboard() {
   return (
     <main>

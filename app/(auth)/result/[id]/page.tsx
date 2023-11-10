@@ -1,10 +1,10 @@
-"use client"
 import { ResultTabs } from "@/components/pages/result-component"
-import { useSearchParams } from 'next/navigation'
 
-export default function Dashboard() {
-  const searchParams = useSearchParams()
- 
+export const metadata = {
+  title: "Assessment Result",
+}
+
+export default function Dashboard() { 
   return (
     <main>
       <section className="container flex-col gap-4 pb-12 pt-4 text-center lg:items-center lg:gap-8 lg:py-4 lg:px-40 ">
