@@ -10,11 +10,13 @@ CREATE TABLE users (
 
 CREATE TABLE results (
    id INT AUTO_INCREMENT PRIMARY KEY,
+   user_id INT NOT NULL,
    type VARCHAR(255) NOT NULL,
    score VARCHAR(255) NOT NULL,
    compatibility VARCHAR(255) NOT NULL,
    recommendation VARCHAR(255) NOT NULL,
    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
    updated_at TIMESTAMP NULL,
-   deleted_at DATETIME NULL
+   deleted_at DATETIME NULL,
+   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE 
 );
