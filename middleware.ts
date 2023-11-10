@@ -8,17 +8,20 @@ export async function middleware(request: NextRequest) {
 
   if (session && ['/', '/login', '/register'].includes(pathname)) {
     url.pathname = '/dashboard';
+    url.search = '';
     return NextResponse.redirect(url);
-  } else if (!session && ['/dashboard', '/assessment', '/result/{id}'].includes(pathname)) {
+  } else if (!session && ['/dashboard', '/assessment'].includes(pathname)) {
     url.pathname = '/';
+    url.search = '';
     return NextResponse.redirect(url);
   } else if (!session && /^\/result\/\w+$/.test(pathname)) {
     url.pathname = '/';
+    url.search = '';
     return NextResponse.redirect(url);
   } else if (pathname === '/assessment') {
     const url = request.nextUrl.clone();
     const category = url.searchParams.get('category');
-  if (category && !Object.values(AssessmentCode).includes(category as AssessmentCode)) {
+    if (category && !Object.values(AssessmentCode).includes(category as AssessmentCode)) {
       return NextResponse.json({ message: `Invalid category` }, { status: 400 });
     }
   }

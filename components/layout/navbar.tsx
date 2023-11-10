@@ -29,7 +29,7 @@ export default function Navbar({isAuth}: NavbarProp) {
     <header className="select-none">
       <nav className="mx-auto justify-between px-4 max-w-7xl">
         <div className="flex items-center justify-between py-3">
-          <Link href="/">
+          <Link href={ isAuth ? '/dashboard' : '/'}>
             <h1 className="text-2xl font-bold duration-200 lg:hover:scale-[1.10]">
               {siteConfig.name}
             </h1>
