@@ -14,7 +14,6 @@ export type AssessmentType = {
 }
 
 export type Assessment = {
-  id: number
   question: string
   options: string[]
   answer: number | null
