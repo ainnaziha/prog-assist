@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { AssessmentResult } from '@/defer/lib/models/contents';
+import getHistory from '@/defer/api/assessment-history';
 import { getUser } from '@/defer/lib/auth';
 import executeQuery from '@/defer/lib/db';
 
@@ -12,21 +12,7 @@ export async function GET(request: Request)
       return NextResponse.json({ message: 'Unauthorized access' }, { status: 401 });
     }
 
-    const query = 'SELECT * FROM results WHERE user_id = ? ORDER BY id DESC LIMIT 10';
-    const values = [user.id];
-
-    const result: any = await executeQuery({ query, values });
-    
-    const assessments = result.map((item: any) => {
-      let date = new Date(item.created_at);
-   
-      return {
-          id: item.id,
-          category: item.type,
-          date: `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`,
-          recommendation: item.recommendation
-      }
-    });
+    const assessments = await getHistory(user.id);
     
     return NextResponse.json({ 
       data: assessments 

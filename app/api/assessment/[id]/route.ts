@@ -1,4 +1,4 @@
-import sendAssessment from '@/defer/api/assessments';
+import sendAssessment from '@/defer/api/assessment-id';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) 

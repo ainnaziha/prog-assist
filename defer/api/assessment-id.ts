@@ -4,6 +4,7 @@ import { AssessmentResult } from "../lib/models/contents";
 import { defer } from "@defer/client";
 
 async function sendAssessment(id: string) {
+  try {
     const query = 'SELECT * FROM results WHERE id = ?';
     const values = [id];
 
@@ -23,6 +24,9 @@ async function sendAssessment(id: string) {
     }
 
     return assessment;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
 }
 
 export default defer(sendAssessment);
