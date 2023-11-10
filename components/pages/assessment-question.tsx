@@ -11,11 +11,15 @@ import { AssessmentCode, DataEngineerings, backEnds, frontEnds } from "@/config/
 import axios from "axios"
 import { AssessmentRequest } from "@/lib/models/request"
 import { toast } from "@/components/ui/use-toast"
+import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react"
 
 export default function AssessmentQuestions() {
     const [assessments, setAssessments] = useState<Assessment[]>([]);
     const searchParams = useSearchParams();
     const [isLoading, setLoading] = useState(true);
+    const router = useRouter();
+    const [isSubmitting, setSubmit] = useState(false);
 
     useEffect(() => {
         loadQuestions();
@@ -59,9 +63,11 @@ export default function AssessmentQuestions() {
             }
         }
 
+        setSubmit(true);
+
         axios.post("/api/assessment", request)
-        .then(() => { 
-        
+        .then((response) => { 
+            router.push(`/result/${response.data.id}`)
         }).catch((error) => {
         toast({
             variant: "destructive",
@@ -69,6 +75,7 @@ export default function AssessmentQuestions() {
             description: error.response.data.message,
         });
         }).finally(() => {
+            setSubmit(false);
         });
     }
 
@@ -82,6 +89,7 @@ export default function AssessmentQuestions() {
                     <Label>{`Question ${index + 1}: ${assessment.question}`}</Label>
                 </div>
                 <RadioGroup
+                disabled={isSubmitting}
                 onValueChange={(e) => {
                     assessments[index].answer = Number(e.split('-')[1]);
                     setAssessments(assessments);
@@ -98,7 +106,14 @@ export default function AssessmentQuestions() {
                 {assessment.error && <p className="text-red-500">{assessment.error}</p>}
             </div>
             )) }
+            {isLoading ? (
+            <Button disabled className="w-2/5 mt-12">
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Please wait
+            </Button>
+            ) : (
             <Button className="w-2/5 mt-12" onClick={onSubmit}>Submit</Button>
+            )}
         </div>
     )
 }
