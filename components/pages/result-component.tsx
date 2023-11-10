@@ -51,12 +51,12 @@ function loadQuestions() {
  }
 
   return (
-    <Tabs defaultValue="overview" className="w-full md:w-[600px] mx-auto px-5 md:p-0">
+    <Tabs defaultValue="recommendation" className="w-full md:w-[600px] mx-auto px-5 md:p-0">
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value="recommendation">Result</TabsTrigger>
         <TabsTrigger value="overview">Overview (TBA)</TabsTrigger>
       </TabsList>
-      <TabsContent value="recommendation">
+      <TabsContent value="overview">
         { isLoading ? (
           <ResultSkeleton />
         ) : (
