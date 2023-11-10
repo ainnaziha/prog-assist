@@ -14,6 +14,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
+import { Skeleton } from "@/components/ui/skeleton";
 
 
 export function History() {
@@ -36,12 +37,15 @@ export function History() {
               description: error.response.data.message,
           });
       }).finally(() => {
+        setLoading(false);
       });
   }
 
   return (
     <Table>
-      <TableCaption>A list of your recent assessment.</TableCaption>
+      <TableCaption> { isLoading ? <Skeleton className="h-4 w-3/5" /> 
+        : histories.length === 0 ? 'No assessments found.' : 'A list of your recent assessment.'
+      } </TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead>Category</TableHead>
