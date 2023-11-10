@@ -3,6 +3,9 @@ const nextConfig = {
   images: {
     domains: ['picsum.photos'],
   },
+  experimental: {
+    serverMinification: false,
+  },
 }
 
 module.exports = nextConfig

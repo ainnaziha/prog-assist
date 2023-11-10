@@ -1,4 +1,4 @@
-import { SiteConfig } from "@/lib/models"
+import { SiteConfig } from "@/defer/lib/models"
 
 /* ====================
 [> WEBSITE CONFIG <]

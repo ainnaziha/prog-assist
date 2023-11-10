@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { AssessmentResult } from "@/lib/models/contents";
+import { AssessmentResult } from "@/defer/lib/models/contents";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "@/components/ui/use-toast";

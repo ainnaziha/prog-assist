@@ -1,9 +1,9 @@
 import bcrypt from 'bcrypt';
-import executeQuery from '@/lib/db';
+import executeQuery from '@/defer/lib/db';
 import { NextResponse } from 'next/server';
-import { AuthRequest } from '@/lib/models/request';
-import { User } from '@/lib/models/user';
-import { setUser } from '@/lib/auth';
+import { AuthRequest } from '@/defer/lib/models/request';
+import { User } from '@/defer/lib/models/user';
+import { setUser } from '@/defer/lib/auth';
 
 export async function POST(request: Request) 
 {

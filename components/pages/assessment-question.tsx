@@ -2,14 +2,14 @@
 
 import { Button } from "@/components/ui/button"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Assessment } from "@/lib/models/contents"
+import { Assessment } from "@/defer/lib/models/contents"
 import { Label } from "@/components/ui/label"
 import { useEffect, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { Skeleton } from "@/components/ui/skeleton"
 import { AssessmentCode, DataEngineerings, backEnds, frontEnds } from "@/config/contents"
 import axios from "axios"
-import { AssessmentRequest } from "@/lib/models/request"
+import { AssessmentRequest } from "@/defer/lib/models/request"
 import { toast } from "@/components/ui/use-toast"
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react"

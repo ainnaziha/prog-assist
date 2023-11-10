@@ -8,7 +8,7 @@ import { settings } from "@/config/settings"
 import { Loader2, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import React from "react"
-import { deleteUser, isAuth } from "@/lib/auth"
+import { deleteUser, isAuth } from "@/defer/lib/auth"
 import { useRouter } from "next/navigation";
 
 interface NavbarProp {

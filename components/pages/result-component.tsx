@@ -14,7 +14,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { AssessmentResult } from "@/lib/models/contents";
+import { AssessmentResult } from "@/defer/lib/models/contents";
 import { useEffect, useState } from "react";
 import { useParams } from 'next/navigation'
 import axios from "axios";

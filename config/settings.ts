@@ -1,4 +1,4 @@
-import { Settings } from "@/lib/models"
+import { Settings } from "@/defer/lib/models"
 
 /* ====================
 [> WEBSITE SETTINGS <]

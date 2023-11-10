@@ -20,7 +20,7 @@ import { ChevronRight, Loader2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
 import axios from "axios";
-import { AuthRequest } from "@/lib/models/request";
+import { AuthRequest } from "@/defer/lib/models/request";
 
 export default function LoginForm() {
   const router = useRouter();

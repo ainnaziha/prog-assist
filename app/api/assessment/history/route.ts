@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { AssessmentResult } from '@/lib/models/contents';
-import { getUser } from '@/lib/auth';
-import executeQuery from '@/lib/db';
+import { AssessmentResult } from '@/defer/lib/models/contents';
+import { getUser } from '@/defer/lib/auth';
+import executeQuery from '@/defer/lib/db';
 
 export async function GET(request: Request) 
 {  

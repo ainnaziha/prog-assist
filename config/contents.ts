@@ -1,4 +1,4 @@
-import { Assessment, AssessmentType, HeroHeader } from "@/lib/models/contents"
+import { Assessment, AssessmentType, HeroHeader } from "@/defer/lib/models/contents"
 import { Code2, LayoutTemplate, Terminal } from "lucide-react"
 
 /* ====================

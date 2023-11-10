@@ -1,7 +1,7 @@
-import { generatePrompt, inference } from "@/lib/ai-helper";
-import { getUser } from "@/lib/auth";
-import executeQuery from "@/lib/db";
-import { AssessmentRequest } from "@/lib/models/request";
+import { generatePrompt, inference } from "@/defer/lib/ai-helper";
+import { getUser } from "@/defer/lib/auth";
+import executeQuery from "@/defer/lib/db";
+import { AssessmentRequest } from "@/defer/lib/models/request";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) 

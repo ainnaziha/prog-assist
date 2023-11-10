@@ -1,8 +1,8 @@
 'use client'
 
-import { User } from "@/lib/models/user"
+import { User } from "@/defer/lib/models/user"
 import { useEffect, useState } from "react"
-import { getUser } from "@/lib/auth"
+import { getUser } from "@/defer/lib/auth"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
