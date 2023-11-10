@@ -11,7 +11,7 @@ export async function GET(request: Request)
     const query = 'SELECT * FROM results WHERE id = ?';
     const values = [id];
 
-    const result = await executeQuery({ query, values });
+    const result: any = await executeQuery({ query, values });
 
     if (result.length === 0) {
       return NextResponse.json({ message: 'Not Found' }, { status: 404 });

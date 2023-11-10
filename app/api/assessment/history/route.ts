@@ -15,9 +15,9 @@ export async function GET(request: Request)
     const query = 'SELECT * FROM results WHERE user_id = ? ORDER BY id DESC LIMIT 10';
     const values = [user.id];
 
-    const result = await executeQuery({ query, values });
+    const result: any = await executeQuery({ query, values });
     
-    const assessments = result.map(item => {
+    const assessments = result.map((item: any) => {
       let date = new Date(item.created_at);
    
       return {

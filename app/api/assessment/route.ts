@@ -30,7 +30,7 @@ export async function POST(request: Request)
     const query = 'INSERT INTO results (user_id, type, recommendation) VALUES (?, ?, ?)';
     const values = [user.id, data.type, response.generated_text];
     
-    const result = await executeQuery({ query, values });
+    const result: any = await executeQuery({ query, values });
 
     const date = new Date();
 
