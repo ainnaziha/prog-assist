@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import { useParams } from 'next/navigation'
 import axios from "axios";
 import { toast } from "@/components/ui/use-toast";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function ResultTabs() {
   const [result, setResult] = useState<AssessmentResult | null>(null);
@@ -41,6 +42,7 @@ function loadQuestions() {
             description: error.response.data.message,
         });
     }).finally(() => {
+      setLoading(false);
     });
   }
 
@@ -51,35 +53,66 @@ function loadQuestions() {
         <TabsTrigger value="recommendation">Recommendation</TabsTrigger>
       </TabsList>
       <TabsContent value="overview">
-        <Card>
-          <CardHeader>
-            <CardTitle>{result?.category} Result</CardTitle>
-            <CardDescription>
-              Date: { result?.date }
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <div className="space-y-1">
-              <Label htmlFor="score" className="text-lg">Overall Score: { result?.score }</Label>
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="compatibility" className="text-lg">Compatibility: { result?.compatibility }%</Label>
-            </div>
-          </CardContent>
-        </Card>
+        { isLoading ? (
+          <ResultSkeleton />
+        ) : (
+          <Card>
+            <CardHeader>
+              <CardTitle>{result?.category} Result</CardTitle>
+              <CardDescription>
+                Date: { result?.date }
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <div className="space-y-1">
+                <Label htmlFor="score" className="text-lg">Overall Score: { result?.score }</Label>
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="compatibility" className="text-lg">Compatibility: { result?.compatibility }%</Label>
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </TabsContent>
       <TabsContent value="recommendation">
-        <Card>
-          <CardHeader>
-            <CardTitle>Here's how you can improve</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <div className="space-y-1">
-              <Label htmlFor="1" className="text-lg">{ result?.recommendation }</Label>
-            </div>
-          </CardContent>
-        </Card>
+        { isLoading ? (
+          <ResultSkeleton />
+        ) : (
+          <Card>
+            <CardHeader>
+              <CardTitle>Here's how you can improve</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <div className="space-y-1">
+                <Label htmlFor="1" className="text-lg">{ result?.recommendation }</Label>
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </TabsContent>
     </Tabs>
+  )
+}
+
+function ResultSkeleton() {
+  return (
+    <Card>
+      <CardContent>
+        <div className="space-y-2 mt-5">
+          <div className="mx-auto w-2/4">
+             <Skeleton className="h-4" />
+         </div>
+         <div className="mx-auto w-2/5">
+             <Skeleton className="h-4" />
+         </div>
+         <div className="mx-auto w-2/3">
+             <Skeleton className="h-4" />
+         </div>
+         <div className="mx-auto w-3/5">
+             <Skeleton className="h-4" />
+         </div>
+      </div>
+      </CardContent>
+    </Card>
   )
 }
