@@ -24,7 +24,5 @@ export type AssessmentResult = {
   id: number
   category: string
   date: string
-  score: string
-  compatibility: string
   recommendation: string
 }

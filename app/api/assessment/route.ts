@@ -26,53 +26,21 @@ export async function POST(request: Request)
         return_full_text: false,
       },
     });
-
-    let keys = ["score", "compatibility", "recommendation"];
-    let keyVals = [];
-    const str = response.generated_text;
-    for (let i = 0; i < keys.length; i++) {
-      let start = str.toLowerCase().indexOf(keys[i]) + keys[i].length + 2;
-      let end = i < keys.length - 1 ? str.toLowerCase().indexOf(keys[i + 1]) : undefined;
-      let value = str.toLowerCase().substring(start, end).trim();
-      keyVals.push(value);
-    }
-
-    const date = new Date();
     
-    const jsonStr = `{
-    "id": 0,
-    "score": "${keyVals[0]}",
-    "compatibility": "${keyVals[1]}",
-    "recommendation": "${keyVals[2]}",
-    "date": "${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}"
-    }`;
-
-    let json;
-
-    try {
-      json =  JSON.parse(jsonStr);
-    } catch (_) {
-      const query = 'INSERT INTO results (user_id, type, score, compatibility, recommendation) VALUES (?, ?, ?, ?, ?)';
-      const values = [user.id, data.type, '', '', str];
-      
-      const result = await executeQuery({ query, values });
-        
-      return NextResponse.json({ 
-        data: {
-          id: result.insertId
-        },
-      });
-    }
-    
-    const query = 'INSERT INTO results (user_id, type, score, compatibility, recommendation) VALUES (?, ?, ?, ?, ?)';
-    const values = [user.id, data.type, json.score, json.compatibility, json.recommendation];
+    const query = 'INSERT INTO results (user_id, type, recommendation) VALUES (?, ?, ?)';
+    const values = [user.id, data.type, response.generated_text];
     
     const result = await executeQuery({ query, values });
-    
-    json.id = result.insertId;
+
+    const date = new Date();
 
     return NextResponse.json({ 
-      data: json,
+      data: {
+        id: result.insertId,
+        category: data.type,
+        date: `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`,
+        recommendation: response.generated_text
+      },
     });
   } catch (error: any) {
     return NextResponse.json({ message: error.message }, { status: 500 });

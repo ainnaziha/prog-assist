@@ -9,24 +9,18 @@ export async function GET(request: Request)
           id: 1,
           category: 'Frontend',
           date: '10 Nov 2023',
-          score: "2.3",
-          compatibility: "34",
           recommendation: 'need to fix the teeth'
       },
       {
         id: 1,
         category: 'Backend',
         date: '10 Nov 2023',
-        score: "2.3",
-        compatibility: "34",
         recommendation: 'need to fix the teeth'
       },
       {
         id: 1,
         category: 'Framework',
         date: '10 Nov 2023',
-        score: "2.3",
-        compatibility: "34",
         recommendation: 'need to fix the teeth'
       } 
     ];

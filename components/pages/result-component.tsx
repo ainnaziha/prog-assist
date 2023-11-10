@@ -46,29 +46,33 @@ function loadQuestions() {
     });
   }
 
+  function capitalizeFirstLetter(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+ }
+
   return (
     <Tabs defaultValue="overview" className="w-full md:w-[600px] mx-auto px-5 md:p-0">
       <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="overview">Overview</TabsTrigger>
-        <TabsTrigger value="recommendation">Recommendation</TabsTrigger>
+        <TabsTrigger value="recommendation">Result</TabsTrigger>
+        <TabsTrigger value="overview">Overview (TBA)</TabsTrigger>
       </TabsList>
-      <TabsContent value="overview">
+      <TabsContent value="recommendation">
         { isLoading ? (
           <ResultSkeleton />
         ) : (
           <Card>
             <CardHeader>
-              <CardTitle>{result?.category} Result</CardTitle>
+            <CardTitle>{capitalizeFirstLetter(result?.category ?? '-')} Result</CardTitle>
               <CardDescription>
                 Date: { result?.date }
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
               <div className="space-y-1">
-                <Label htmlFor="score" className="text-lg">Overall Score: { result?.score }</Label>
+                <Label htmlFor="score" className="text-lg">Overall Score: TBA</Label>
               </div>
               <div className="space-y-1">
-                <Label htmlFor="compatibility" className="text-lg">Compatibility: { result?.compatibility }%</Label>
+                <Label htmlFor="compatibility" className="text-lg">Compatibility: TBA</Label>
               </div>
             </CardContent>
           </Card>
@@ -80,7 +84,10 @@ function loadQuestions() {
         ) : (
           <Card>
             <CardHeader>
-              <CardTitle>Here's how you can improve</CardTitle>
+              <CardTitle>{capitalizeFirstLetter(result?.category ?? '-')} Result</CardTitle>
+              <CardDescription>
+                Date: { result?.date }
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
               <div className="space-y-1">
