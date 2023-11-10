@@ -11,8 +11,8 @@ export async function GET(request: Request)
       id: Number(id),
       category: 'test',
       date: '2021-2312',
-      score: 60,
-      compatibility: 50,
+      score: '60',
+      compatibility: '50',
       recommendation: 'test recomme'
     }
     

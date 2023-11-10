@@ -106,7 +106,7 @@ export default function AssessmentQuestions() {
                 {assessment.error && <p className="text-red-500">{assessment.error}</p>}
             </div>
             )) }
-            {isLoading ? (
+            {isSubmitting ? (
             <Button disabled className="w-2/5 mt-12">
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               Please wait

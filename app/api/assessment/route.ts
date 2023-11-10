@@ -51,12 +51,12 @@ export async function POST(request: Request)
 
     const json =  JSON.parse(jsonStr);
 
-    const query = 'INSERT INTO results (user_id, type, score, compatibility, recommendation) VALUES (?, ?, ?, ?, ?)';
-    const values = [user.id, data.type, json.score, json.compatibility, json.recommendation];
+    // const query = 'INSERT INTO results (user_id, type, score, compatibility, recommendation) VALUES (?, ?, ?, ?, ?)';
+    // const values = [user.id, data.type, json.score, json.compatibility, json.recommendation];
 
-    const result = await executeQuery({ query, values });
+    // const result = await executeQuery({ query, values });
     
-    json.id = result.insertId;
+    // json.id = result.insertId;
 
     return NextResponse.json({ 
       data: json,
