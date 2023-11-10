@@ -8,10 +8,12 @@ import { useEffect, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import axios from "axios"
 import { toast } from "@/components/ui/use-toast"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export default function AssessmentQuestions() {
     const [assessments, setAssessments] = useState<Assessment[]>([]);
     const searchParams = useSearchParams();
+    const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
         loadQuestions();
@@ -29,6 +31,7 @@ export default function AssessmentQuestions() {
                 description: error.response.data.message,
             });
         }).finally(() => {
+            setLoading(false);
         });
     }
     
@@ -48,7 +51,9 @@ export default function AssessmentQuestions() {
         }
     }
 
-    return (
+    return isLoading ? (
+        <QuestionSkeleton />
+    ) : (
         <div>
             { assessments.map((assessment, index) => (
             <div key={assessment.id} className="text-left">
@@ -73,6 +78,25 @@ export default function AssessmentQuestions() {
             </div>
             )) }
             <Button className="w-2/5 mt-12" onClick={onSubmit}>Submit</Button>
+        </div>
+    )
+}
+
+function QuestionSkeleton() {
+    return (
+        <div className="space-y-2 mt-10">
+            <div className="mx-auto w-2/4">
+               <Skeleton className="h-4" />
+           </div>
+           <div className="mx-auto w-2/5">
+               <Skeleton className="h-4" />
+           </div>
+           <div className="mx-auto w-2/3">
+               <Skeleton className="h-4" />
+           </div>
+           <div className="mx-auto w-3/5">
+               <Skeleton className="h-4" />
+           </div>
         </div>
     )
 }

@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 export function History() {
   const [histories, setHistories] = useState<AssessmentResult[]>([]);
   const router = useRouter();
+  const [isLoading, setLoading] = useState(true);
   
   useEffect(() => {
     loadHistories();

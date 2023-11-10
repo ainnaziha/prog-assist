@@ -22,7 +22,8 @@ import { toast } from "@/components/ui/use-toast";
 
 export function ResultTabs() {
   const [result, setResult] = useState<AssessmentResult | null>(null);
-  const params = useParams()
+  const params = useParams();
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     loadQuestions();
