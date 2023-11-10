@@ -46,17 +46,17 @@ export async function POST(request: Request)
       "score": "${keyVals[0]}",
       "compatibility": "${keyVals[1]}",
       "recommendation": "${keyVals[2]}",
-      "date": "${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}",
+      "date": "${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}"
     }`;
 
     const json =  JSON.parse(jsonStr);
 
-    // const query = 'INSERT INTO results (user_id, type, score, compatibility, recommendation) VALUES (?, ?, ?, ?, ?)';
-    // const values = [user.id, data.type, json.score, json.compatibility, json.recommendation];
+    const query = 'INSERT INTO results (user_id, type, score, compatibility, recommendation) VALUES (?, ?, ?, ?, ?)';
+    const values = [user.id, data.type, json.score, json.compatibility, json.recommendation];
 
-    // const result = await executeQuery({ query, values });
+    const result = await executeQuery({ query, values });
     
-    // json.id = result.insertId;
+    json.id = result.insertId;
 
     return NextResponse.json({ 
       data: json,
