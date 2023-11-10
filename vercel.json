@@ -1,7 +1,12 @@
 {
-    "functions": {
-      "app/api/**/*.ts": {
-        "maxDuration": 180
-      }
+  "functions": {
+    "app/api/**/*.ts": {
+      "memory": 3008,
+      "maxDuration": 60
+    },
+    "app/api/**/**/*.ts": {
+      "memory": 3008,
+      "maxDuration": 60
     }
+  }
 }
