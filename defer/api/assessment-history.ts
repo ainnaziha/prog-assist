@@ -1,7 +1,6 @@
 import executeQuery from "../lib/db";
-import { defer } from "@defer/client";
 
-async function getHistory(userId: number) {
+export async function getHistory(userId: number) {
     try {
         const query = 'SELECT * FROM results WHERE user_id = ? ORDER BY id DESC LIMIT 10';
         const values = [userId];
@@ -23,5 +22,3 @@ async function getHistory(userId: number) {
         throw new Error(error.message);
       }
 }
-
-export default defer(getHistory);

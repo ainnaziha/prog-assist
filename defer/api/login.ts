@@ -1,17 +1,16 @@
 import executeQuery from "../lib/db";
-import { defer } from "@defer/client";
 import { AuthRequest } from "../lib/models/request";
 import { NextResponse } from "next/server";
 import bcrypt from 'bcrypt';
 import { User } from "../lib/models/user";
 import { setUser } from "../lib/auth";
 
-async function loginUser(request: AuthRequest) {
-    try {
-      const query = 'SELECT * FROM users WHERE email = ?';
-      const values = [request.email];
-      
-      const result: any = await executeQuery({ query, values });
+export async function loginUser(request: AuthRequest) {
+  try {
+    const query = 'SELECT * FROM users WHERE email = ?';
+    const values = [request.email];
+    
+    const result: any = await executeQuery({ query, values });
     
     if (result.length === 0) {
       return NextResponse.json({ message: 'Invalid email or password' }, { status: 404 });
@@ -38,5 +37,3 @@ async function loginUser(request: AuthRequest) {
     throw new Error(error.message);
   }
 }
-
-export default defer(loginUser);

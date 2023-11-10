@@ -1,9 +1,8 @@
 import { generatePrompt, inference } from "../lib/ai-helper";
 import executeQuery from "../lib/db";
-import { defer } from "@defer/client";
 import { AssessmentRequest } from "../lib/models/request";
 
-async function sendAssessment(userId: number, request: AssessmentRequest) {
+export async function sendAssessment(userId: number, request: AssessmentRequest) {
   try {
     const response = await inference.textGeneration({
       model: process.env.HF_MODEL,
@@ -34,5 +33,3 @@ async function sendAssessment(userId: number, request: AssessmentRequest) {
     throw new Error(error.message);
   }
 }
-
-export default defer(sendAssessment);

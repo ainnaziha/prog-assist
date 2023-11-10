@@ -1,4 +1,4 @@
-import loginUser from '@/defer/api/login';
+import { loginUser } from '@/defer/api/login';
 import { NextResponse } from 'next/server';
 import { AuthRequest } from '@/defer/lib/models/request';
 

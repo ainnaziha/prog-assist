@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import getHistory from '@/defer/api/assessment-history';
+import { getHistory } from '@/defer/api/assessment-history';
 import { getUser } from '@/defer/lib/auth';
 import executeQuery from '@/defer/lib/db';
 

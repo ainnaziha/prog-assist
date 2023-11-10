@@ -1,6 +1,5 @@
-import { generatePrompt, inference } from "@/defer/lib/ai-helper";
 import { getUser } from "@/defer/lib/auth";
-import sendAssessment from "@/defer/api/assessment";
+import { sendAssessment } from "@/defer/api/assessment";
 import { AssessmentRequest } from "@/defer/lib/models/request";
 import { NextResponse } from "next/server";
 

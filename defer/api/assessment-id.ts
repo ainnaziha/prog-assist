@@ -1,9 +1,8 @@
 import { NextResponse } from "next/server";
 import executeQuery from "../lib/db";
 import { AssessmentResult } from "../lib/models/contents";
-import { defer } from "@defer/client";
 
-async function getAssessment(id: string) {
+export async function getAssessment(id: string) {
   try {
     const query = 'SELECT * FROM results WHERE id = ?';
     const values = [id];
@@ -28,5 +27,3 @@ async function getAssessment(id: string) {
     throw new Error(error.message);
   }
 }
-
-export default defer(getAssessment);
