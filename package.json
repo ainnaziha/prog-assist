@@ -29,7 +29,6 @@
     "clsx": "^2.0.0",
     "eslint": "8.45.0",
     "eslint-config-next": "14.0.1",
-    "fs": "^0.0.1-security",
     "lucide-react": "^0.263.0",
     "next": "14.0.1",
     "next-themes": "^0.2.1",
@@ -49,5 +48,9 @@
     "@types/bcrypt": "^5.0.2",
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.4.1"
+  },
+  "browser": {
+    "crypto": false,
+    "stream": false
   }
 }

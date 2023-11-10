@@ -67,7 +67,7 @@ export default function AssessmentQuestions() {
 
         axios.post("/api/assessment", request)
         .then((response) => { 
-            router.push(`/result/${response.data.id}`)
+            router.push(`/result/${response.data.data.id}`)
         }).catch((error) => {
         toast({
             variant: "destructive",
