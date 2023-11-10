@@ -1,6 +1,4 @@
-import { NextResponse } from "next/server";
 import executeQuery from "../lib/db";
-import { AssessmentResult } from "../lib/models/contents";
 import { defer } from "@defer/client";
 
 async function getHistory(userId: number) {

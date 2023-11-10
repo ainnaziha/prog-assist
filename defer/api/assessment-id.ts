@@ -3,7 +3,7 @@ import executeQuery from "../lib/db";
 import { AssessmentResult } from "../lib/models/contents";
 import { defer } from "@defer/client";
 
-async function sendAssessment(id: string) {
+async function getAssessment(id: string) {
   try {
     const query = 'SELECT * FROM results WHERE id = ?';
     const values = [id];
@@ -29,4 +29,4 @@ async function sendAssessment(id: string) {
   }
 }
 
-export default defer(sendAssessment);
+export default defer(getAssessment);
