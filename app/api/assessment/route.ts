@@ -1,32 +1,48 @@
-import { NextResponse } from 'next/server';
-import { Assessment } from '@/lib/models/contents';
+import { generatePrompt, inference } from "@/lib/ai-helper";
+import { getUser } from "@/lib/auth";
+import executeQuery from "@/lib/db";
+import { AssessmentRequest } from "@/lib/models/request";
+import { NextResponse } from "next/server";
 
-export async function GET(request: Request) 
+export async function POST(request: Request) 
 {  
   try {
-    const category = new URL(request.url).searchParams.get('category');
+    const user = await getUser();
 
-    const result: Assessment[] = [
-      {
-          id: 1,
-          question: category ?? '',
-          options: ['asad', 'basdaassda'],
-          answer: null,
-          error: null
-      },
-      {
-          id: 2,
-          question: 'testaa',
-          options: ['aasd', 'basdasda'],
-          answer: null,
-          error: null
-      }
-  ];
+    if (user === null) {
+      return NextResponse.json({ message: 'Not authorized' }, { status: 401 });
+    }
     
-    return NextResponse.json({ 
-      data: result 
+    const data: AssessmentRequest = await request.json();
+
+    const response = await inference.textGeneration({
+      model: process.env.HF_MODEL,
+      inputs: generatePrompt(data.type, JSON.stringify(data.questions)),
+      parameters: {
+        max_new_tokens: 500,
+        // @ts-ignore
+        typical_p: 0.2,
+        repetition_penalty: 1,
+        return_full_text: false,
+      },
     });
-   } catch (error: any) {
+    
+    const query = 'INSERT INTO results (user_id, type, recommendation) VALUES (?, ?, ?)';
+    const values = [user.id, data.type, response.generated_text];
+    
+    const result = await executeQuery({ query, values });
+
+    const date = new Date();
+
+    return NextResponse.json({ 
+      data: {
+        id: result.insertId,
+        category: data.type,
+        date: `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`,
+        recommendation: response.generated_text
+      },
+    });
+  } catch (error: any) {
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
 }

@@ -1,4 +1,3 @@
-import fs from 'fs';
 import mysql from "serverless-mysql";
 
 const db = mysql({
@@ -22,9 +21,6 @@ export default async function executeQuery({ query, values }: QueryParams) {
     await db.end();
     return results;
   } catch (error: any) {
-    const date = new Date();
-    const logName = `log/error-${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}.log`;
-    fs.appendFileSync(logName, `${date.toISOString()}: ${error}\n`);
     throw new Error(error.message);
   }
 }

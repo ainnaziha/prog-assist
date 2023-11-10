@@ -14,7 +14,6 @@ export type AssessmentType = {
 }
 
 export type Assessment = {
-  id: number
   question: string
   options: string[]
   answer: number | null
@@ -25,7 +24,5 @@ export type AssessmentResult = {
   id: number
   category: string
   date: string
-  score: number
-  compatibility: number
   recommendation: string
 }

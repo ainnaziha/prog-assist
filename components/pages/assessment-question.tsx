@@ -6,14 +6,20 @@ import { Assessment } from "@/lib/models/contents"
 import { Label } from "@/components/ui/label"
 import { useEffect, useState } from "react"
 import { useSearchParams } from "next/navigation"
-import axios from "axios"
-import { toast } from "@/components/ui/use-toast"
 import { Skeleton } from "@/components/ui/skeleton"
+import { AssessmentCode, DataEngineerings, backEnds, frontEnds } from "@/config/contents"
+import axios from "axios"
+import { AssessmentRequest } from "@/lib/models/request"
+import { toast } from "@/components/ui/use-toast"
+import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react"
 
 export default function AssessmentQuestions() {
     const [assessments, setAssessments] = useState<Assessment[]>([]);
     const searchParams = useSearchParams();
     const [isLoading, setLoading] = useState(true);
+    const router = useRouter();
+    const [isSubmitting, setSubmit] = useState(false);
 
     useEffect(() => {
         loadQuestions();
@@ -21,18 +27,15 @@ export default function AssessmentQuestions() {
 
     function loadQuestions() {
         const category = searchParams.get('category') ?? '-';
-        axios.get("/api/assessment", { params: { category: category } })
-        .then((response) => { 
-            setAssessments(response.data.data);
-        }).catch((error) => {
-            toast({
-                variant: "destructive",
-                title: "Uh oh! Something went wrong.",
-                description: error.response.data.message,
-            });
-        }).finally(() => {
-            setLoading(false);
-        });
+        if (category == AssessmentCode.Frontend) {
+            setAssessments(frontEnds);
+        } else if (category == AssessmentCode.Backend) {
+            setAssessments(backEnds);
+        } else {
+            setAssessments(DataEngineerings);
+        }
+
+        setLoading(false);
     }
     
     function validateAssessments() {
@@ -44,11 +47,36 @@ export default function AssessmentQuestions() {
 
     function onSubmit() {
         validateAssessments();
+        let request: AssessmentRequest = {
+            type: searchParams.get('category') ?? '-',
+            questions: [],
+        };
+
         for (let i = 0; i < assessments.length; i++) {
             if (assessments[i].error !== null) {
                 return;
+            } else {
+                request.questions.push({
+                    question: assessments[i].question,
+                    answer: assessments[i].options[assessments[i].answer ?? 0],
+                });
             }
         }
+
+        setSubmit(true);
+
+        axios.post("/api/assessment", request)
+        .then((response) => { 
+            router.push(`/result/${response.data.data.id}`)
+        }).catch((error) => {
+        toast({
+            variant: "destructive",
+            title: "Uh oh! Something went wrong.",
+            description: error.response.data.message,
+        });
+        }).finally(() => {
+            setSubmit(false);
+        });
     }
 
     return isLoading ? (
@@ -56,11 +84,12 @@ export default function AssessmentQuestions() {
     ) : (
         <div>
             { assessments.map((assessment, index) => (
-            <div key={assessment.id} className="text-left">
+            <div key={index} className="text-left">
                 <div className="mt-5 mb-2">
                     <Label>{`Question ${index + 1}: ${assessment.question}`}</Label>
                 </div>
                 <RadioGroup
+                disabled={isSubmitting}
                 onValueChange={(e) => {
                     assessments[index].answer = Number(e.split('-')[1]);
                     setAssessments(assessments);
@@ -77,7 +106,14 @@ export default function AssessmentQuestions() {
                 {assessment.error && <p className="text-red-500">{assessment.error}</p>}
             </div>
             )) }
+            {isSubmitting ? (
+            <Button disabled className="w-2/5 mt-12">
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Please wait
+            </Button>
+            ) : (
             <Button className="w-2/5 mt-12" onClick={onSubmit}>Submit</Button>
+            )}
         </div>
     )
 }

@@ -3,3 +3,11 @@ export type AuthRequest = {
     email: string,
     password: string
 }
+
+export type AssessmentRequest = {
+    type: string,
+    questions: {
+        question: string,
+        answer: string,
+    }[],
+}

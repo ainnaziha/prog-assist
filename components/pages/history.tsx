@@ -49,7 +49,7 @@ export function History() {
       <TableHeader>
         <TableRow>
           <TableHead>Category</TableHead>
-          <TableHead>Compatibility</TableHead>
+          <TableHead>Result</TableHead>
           <TableHead>Date</TableHead>
         </TableRow>
       </TableHeader>
@@ -57,7 +57,7 @@ export function History() {
         {histories.map((history) => (
           <TableRow onClick={() => router.push(`/result/${history.id}`)} key={history.id}>
             <TableCell className="font-medium">{history.category}</TableCell>
-            <TableCell>{history.compatibility}</TableCell>
+            <TableCell>{history.recommendation.substring(0, 20) + "..."}</TableCell>
             <TableCell>{history.date}</TableCell>
           </TableRow>
         ))}
