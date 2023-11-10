@@ -11,6 +11,32 @@ This project was generated with NextJS 14
 
 ## Directory
 use tree or tree /F command to generate
+├───app
+│   ├───(auth)
+│   │   ├───assessment
+│   │   ├───dashboard
+│   │   └───result
+│   │       └───[id]
+│   ├───(guest)
+│   │   ├───404
+│   │   ├───login
+│   │   └───register
+│   └───api
+│       ├───assessment
+│       │   ├───history
+│       │   └───[id]
+│       └───auth
+│           ├───login
+│           └───register
+├───components
+│   ├───layout
+│   ├───pages
+│   └───ui
+├───config
+├───lib
+│   └───models
+├───log
+└───public
 
 ## Get started
 
