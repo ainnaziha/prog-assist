@@ -46,26 +46,8 @@ export const frontEnds: Assessment[] = [
       "error": null
   },
   {
-      "question": "Do you find the current frontend frameworks/tools compatible with your development needs?",
-      "options": ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
-      "answer": null,
-      "error": null
-  },
-  {
       "question": "Which aspect of frontend development do you believe contributes most to your current score?",
       "options": ["HTML Structure", "CSS Styling", "JavaScript Interactivity", "Responsive Design", "Other"],
-      "answer": null,
-      "error": null
-  },
-  {
-      "question": "In what areas do you think you could improve in terms of frontend development?",
-      "options": ["CSS Optimization", "JavaScript Performance", "User Experience Design", "Cross-Browser Compatibility", "Other"],
-      "answer": null,
-      "error": null
-  },
-  {
-      "question": "How likely are you to implement recommendations to enhance your frontend development skills?",
-      "options": ["Not Likely at All", "Slightly Likely", "Neutral", "Likely", "Very Likely"],
       "answer": null,
       "error": null
   },
@@ -103,18 +85,6 @@ export const frontEnds: Assessment[] = [
 
 export const backEnds: Assessment[] = [
   {
-      "question": "How would you rate your proficiency in backend development?",
-      "options": ["Beginner", "Intermediate", "Advanced", "Expert"],
-      "answer": null,
-      "error": null
-  },
-  {
-      "question": "Do you find the current backend frameworks/tools compatible with your development needs?",
-      "options": ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"],
-      "answer": null,
-      "error": null
-  },
-  {
       "question": "Which aspect of backend development do you believe contributes most to your current score?",
       "options": ["Database Management", "Server-Side Logic", "API Design", "Security", "Other"],
       "answer": null,
@@ -137,12 +107,6 @@ export const backEnds: Assessment[] = [
     "options": ["Data Retrieval", "User Interface Design", "Authentication", "Frontend Styling"],
     "answer": null,
     "error": null
-  },
-  {
-      "question": "Which HTTP method is typically used for a read-only operation in RESTful APIs?",
-      "options": ["GET", "POST", "PUT", "DELETE"],
-      "answer": null,
-      "error": null
   },
   {
       "question": "What is the purpose of indexing in a database?",
@@ -203,24 +167,6 @@ export const DataEngineerings: Assessment[] = [
   {
       "question": "Which technology is commonly used for real-time data streaming in data engineering?",
       "options": ["Apache Kafka", "Apache Hadoop", "Spark Streaming", "Flume", "Other"],
-      "answer": null,
-      "error": null
-  },
-  {
-      "question": "What is the significance of data partitioning in distributed data processing?",
-      "options": ["Improves performance by parallelizing computations", "Ensures data consistency", "Minimizes storage space", "Prevents data duplication"],
-      "answer": null,
-      "error": null
-  },
-  {
-      "question": "How do you handle schema evolution in a data warehouse environment?",
-      "options": ["Version control for database schemas", "Automated schema migration tools", "Manual updates as needed", "Data warehouses do not support schema changes"],
-      "answer": null,
-      "error": null
-  },
-  {
-      "question": "Which database model is commonly used for handling complex and hierarchical data structures in data engineering?",
-      "options": ["NoSQL (e.g., MongoDB)", "Relational (e.g., MySQL)", "Graph (e.g., Neo4j)", "In-memory (e.g., Redis)", "Other"],
       "answer": null,
       "error": null
   }
