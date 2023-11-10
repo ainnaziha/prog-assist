@@ -20,3 +20,6 @@ CREATE TABLE results (
    deleted_at DATETIME NULL,
    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE 
 );
+
+ALTER TABLE results
+MODIFY COLUMN recommendation TEXT;
