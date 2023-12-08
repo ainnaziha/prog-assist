@@ -1,6 +1,6 @@
 ## ProgAssist Web App
 
-This project was generated with NextJS 14 for [lablab.ai Stable LM 3B challenge](https://lablab.ai/event/stable-lm-3b-24-hours-hackathon/maverick/prog-assist)
+This project was generated with NextJS 14, a winning solution for [lablab.ai Stable LM 3B challenge](https://lablab.ai/event/stable-lm-3b-24-hours-hackathon/maverick/prog-assist)
 
 ## Project Details
 
